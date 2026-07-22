@@ -1,28 +1,13 @@
-import Preloader from "./components/Preloader";
-import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import Work from "./components/Work";
-import About from "./components/About";
-import Experience from "./components/Experience";
-import Education from "./components/Education";
-import Contact from "./components/Contact";
-import Footer from "./components/Footer";
+import { Route, Routes } from "react-router-dom";
+import Portfolio from "./pages/Portfolio";
+import DashboardPage from "./pages/DashboardPage";
 
 function App() {
   return (
-    <>
-      <Preloader />
-      <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <Work />
-        <Experience />
-        <Education />
-        <Contact />
-      </main>
-      <Footer />
-    </>
+    <Routes>
+      <Route path="/" element={<Portfolio />} />
+      <Route path="/dashboard/*" element={<DashboardPage />} />
+    </Routes>
   );
 }
 

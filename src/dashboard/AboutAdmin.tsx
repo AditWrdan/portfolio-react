@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { About } from "../lib/types";
 import aboutData from "../data/about.json";
 import ImageUploadField from "./components/ImageUploadField";
+import { saveContent } from "../lib/dashboardApi";
 
 export default function AboutAdmin() {
   const [about, setAbout] = useState<About>(aboutData as About);
@@ -14,16 +15,7 @@ export default function AboutAdmin() {
     setSaving(true);
     setError(null);
     try {
-      const res = await fetch("/api/content/about", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(about),
-      });
-      if (!res.ok) {
-        throw new Error(
-          "Gagal menyimpan — pastikan dev server (npm run dev) sedang jalan."
-        );
-      }
+      await saveContent("about", about);
       setSavedAt(Date.now());
     } catch (err) {
       setError(String(err));

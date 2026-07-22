@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Upload } from "lucide-react";
+import { getDashboardPassword, clearDashboardPassword } from "../../lib/dashboardAuth";
 
 const MAX_SIZE_BYTES = 5 * 1024 * 1024;
 
@@ -42,19 +43,24 @@ export default function ImageUploadField({
 
     try {
       const dataUrl = await readAsDataUrl(file);
-      const res = await fetch("/api/upload", {
+      const res = await fetch("/.netlify/functions/upload-image", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ fileName: file.name, dataUrl }),
+        body: JSON.stringify({
+          fileName: file.name,
+          dataUrl,
+          password: getDashboardPassword(),
+        }),
       });
+      if (res.status === 401) {
+        clearDashboardPassword();
+        throw new Error("Password salah — silakan reload halaman.");
+      }
       if (!res.ok) throw new Error(await res.text());
       const { url } = (await res.json()) as { url: string };
       onChange(url);
     } catch (err) {
-      setError(
-        "Upload gagal — pastikan dev server (npm run dev) sedang jalan. " +
-          String(err)
-      );
+      setError(String(err));
     } finally {
       setUploading(false);
     }
@@ -89,6 +95,10 @@ export default function ImageUploadField({
           />
         </label>
       </div>
+
+      <p className="mt-1 font-mono text-[10px] text-muted/60">
+        Perubahan butuh ~10-30 detik untuk live (proses build ulang).
+      </p>
 
       {error && <p className="mt-2 font-mono text-xs text-red-400">{error}</p>}
     </div>

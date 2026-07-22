@@ -3,18 +3,10 @@ import { ArrowDown, ArrowUp, Pencil, Plus, Trash2 } from "lucide-react";
 import type { Project } from "../lib/types";
 import projectsData from "../data/projects.json";
 import ProjectForm from "./ProjectForm";
+import { saveContent } from "../lib/dashboardApi";
 
 async function persist(projects: Project[]) {
-  const res = await fetch("/api/content/projects", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(projects),
-  });
-  if (!res.ok) {
-    throw new Error(
-      "Gagal menyimpan — pastikan dev server (npm run dev) sedang jalan."
-    );
-  }
+  await saveContent("projects", projects);
 }
 
 export default function ProjectsAdmin() {

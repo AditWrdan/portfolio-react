@@ -3,18 +3,10 @@ import { ArrowDown, ArrowUp, Pencil, Plus, Trash2 } from "lucide-react";
 import type { ExperienceEntry } from "../lib/types";
 import experienceData from "../data/experience.json";
 import ExperienceForm from "./ExperienceForm";
+import { saveContent } from "../lib/dashboardApi";
 
 async function persist(items: ExperienceEntry[]) {
-  const res = await fetch("/api/content/experience", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(items),
-  });
-  if (!res.ok) {
-    throw new Error(
-      "Gagal menyimpan — pastikan dev server (npm run dev) sedang jalan."
-    );
-  }
+  await saveContent("experience", items);
 }
 
 export default function ExperienceAdmin() {

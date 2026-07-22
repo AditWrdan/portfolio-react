@@ -3,18 +3,10 @@ import { ArrowDown, ArrowUp, Pencil, Plus, Trash2 } from "lucide-react";
 import type { EducationEntry } from "../lib/types";
 import educationData from "../data/education.json";
 import EducationForm from "./EducationForm";
+import { saveContent } from "../lib/dashboardApi";
 
 async function persist(items: EducationEntry[]) {
-  const res = await fetch("/api/content/education", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(items),
-  });
-  if (!res.ok) {
-    throw new Error(
-      "Gagal menyimpan — pastikan dev server (npm run dev) sedang jalan."
-    );
-  }
+  await saveContent("education", items);
 }
 
 export default function EducationAdmin() {

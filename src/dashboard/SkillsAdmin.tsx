@@ -3,18 +3,10 @@ import { ArrowDown, ArrowUp, Pencil, Plus, Trash2 } from "lucide-react";
 import type { SkillCategory } from "../lib/types";
 import skillsData from "../data/skills.json";
 import SkillCategoryForm from "./SkillCategoryForm";
+import { saveContent } from "../lib/dashboardApi";
 
 async function persist(skills: SkillCategory[]) {
-  const res = await fetch("/api/content/skills", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(skills),
-  });
-  if (!res.ok) {
-    throw new Error(
-      "Gagal menyimpan — pastikan dev server (npm run dev) sedang jalan."
-    );
-  }
+  await saveContent("skills", skills);
 }
 
 export default function SkillsAdmin() {

@@ -2,7 +2,7 @@ import { useState } from "react";
 import type { SkillCategory } from "../lib/types";
 import TagListInput from "./components/TagListInput";
 
-export type SkillCategoryDraft = { category: string; stack: string[] };
+const EMPTY: SkillCategory = { category: "", stack: [] };
 
 export default function SkillCategoryForm({
   initial,
@@ -11,15 +11,11 @@ export default function SkillCategoryForm({
   saving,
 }: {
   initial?: SkillCategory;
-  onSave: (draft: SkillCategoryDraft) => void;
+  onSave: (draft: SkillCategory) => void;
   onCancel: () => void;
   saving: boolean;
 }) {
-  const [draft, setDraft] = useState<SkillCategoryDraft>(
-    initial
-      ? { category: initial.category, stack: initial.stack }
-      : { category: "", stack: [] }
-  );
+  const [draft, setDraft] = useState<SkillCategory>(initial ?? EMPTY);
 
   return (
     <form

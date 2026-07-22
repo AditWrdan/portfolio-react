@@ -1,0 +1,16 @@
+[
+  {
+    "logo": "UP",
+    "logoImage": "/unindra.jpg",
+    "period": "2021 — 2025",
+    "school": "Universitas Indraprasta PGRI (UNINDRA)",
+    "field": "Computer Science"
+  },
+  {
+    "logo": "SMK",
+    "logoImage": "/pnb.png",
+    "period": "Vocational",
+    "school": "SMK Penerbangan Angkasa Bogor",
+    "field": "Vocational School"
+  }
+]

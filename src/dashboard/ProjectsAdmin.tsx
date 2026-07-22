@@ -1,79 +1,76 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ArrowDown, ArrowUp, Pencil, Plus, Trash2 } from "lucide-react";
-import { supabase } from "../lib/supabase";
 import type { Project } from "../lib/types";
-import ProjectForm, { type ProjectDraft } from "./ProjectForm";
+import projectsData from "../data/projects.json";
+import ProjectForm from "./ProjectForm";
+
+async function persist(projects: Project[]) {
+  const res = await fetch("/api/content/projects", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(projects),
+  });
+  if (!res.ok) {
+    throw new Error(
+      "Gagal menyimpan — pastikan dev server (npm run dev) sedang jalan."
+    );
+  }
+}
 
 export default function ProjectsAdmin() {
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [editingId, setEditingId] = useState<string | "new" | null>(null);
+  const [projects, setProjects] = useState<Project[]>(
+    projectsData as Project[]
+  );
+  const [editingIndex, setEditingIndex] = useState<number | "new" | null>(
+    null
+  );
   const [saving, setSaving] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const load = async () => {
-    setLoading(true);
-    const { data } = await supabase
-      .from("projects")
-      .select("*")
-      .order("sort_order", { ascending: true });
-    setProjects(data ?? []);
-    setLoading(false);
-  };
-
-  useEffect(() => {
-    load();
-  }, []);
-
-  const handleSave = async (draft: ProjectDraft) => {
+  const save = async (next: Project[]) => {
     setSaving(true);
-    if (editingId === "new") {
-      const nextSortOrder = projects.length
-        ? Math.max(...projects.map((p) => p.sort_order)) + 1
-        : 0;
-      await supabase
-        .from("projects")
-        .insert({ ...draft, sort_order: nextSortOrder });
-    } else {
-      await supabase.from("projects").update(draft).eq("id", editingId);
+    setError(null);
+    try {
+      await persist(next);
+      setProjects(next);
+    } catch (err) {
+      setError(String(err));
+    } finally {
+      setSaving(false);
     }
-    setSaving(false);
-    setEditingId(null);
-    load();
   };
 
-  const handleDelete = async (id: string) => {
+  const handleSave = async (draft: Project) => {
+    const next =
+      editingIndex === "new"
+        ? [...projects, draft]
+        : projects.map((p, i) => (i === editingIndex ? draft : p));
+    await save(next);
+    setEditingIndex(null);
+  };
+
+  const handleDelete = async (index: number) => {
     if (!window.confirm("Hapus project ini?")) return;
-    await supabase.from("projects").delete().eq("id", id);
-    load();
+    await save(projects.filter((_, i) => i !== index));
   };
 
   const move = async (index: number, direction: -1 | 1) => {
     const target = index + direction;
     if (target < 0 || target >= projects.length) return;
-    const a = projects[index];
-    const b = projects[target];
-    await supabase
-      .from("projects")
-      .update({ sort_order: b.sort_order })
-      .eq("id", a.id);
-    await supabase
-      .from("projects")
-      .update({ sort_order: a.sort_order })
-      .eq("id", b.id);
-    load();
+    const next = [...projects];
+    [next[index], next[target]] = [next[target], next[index]];
+    await save(next);
   };
 
-  if (editingId) {
+  if (editingIndex !== null) {
     const current =
-      editingId === "new"
-        ? undefined
-        : projects.find((p) => p.id === editingId);
+      editingIndex === "new" ? undefined : projects[editingIndex];
     return (
       <ProjectForm
         initial={current}
         saving={saving}
         onSave={handleSave}
-        onCancel={() => setEditingId(null)}
+        onCancel={() => setEditingIndex(null)}
       />
     );
   }
@@ -86,7 +83,7 @@ export default function ProjectsAdmin() {
         </h2>
         <button
           type="button"
-          onClick={() => setEditingId("new")}
+          onClick={() => setEditingIndex("new")}
           className="flex items-center gap-1.5 border border-accent/60 px-4 py-2 font-mono text-xs uppercase tracking-widest text-accent hover:bg-accent hover:text-bg"
         >
           <Plus size={14} />
@@ -94,59 +91,59 @@ export default function ProjectsAdmin() {
         </button>
       </div>
 
-      {loading ? (
-        <p className="mt-8 font-mono text-xs text-muted">Memuat...</p>
-      ) : (
-        <div className="mt-8 border-b border-border">
-          {projects.map((project, i) => (
-            <div
-              key={project.id}
-              className="flex items-center justify-between gap-4 border-t border-border py-4"
-            >
-              <span className="font-display text-lg text-foreground">
-                {project.title}
-              </span>
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => move(i, -1)}
-                  disabled={i === 0}
-                  className="text-muted hover:text-foreground disabled:opacity-30"
-                >
-                  <ArrowUp size={15} />
-                </button>
-                <button
-                  type="button"
-                  onClick={() => move(i, 1)}
-                  disabled={i === projects.length - 1}
-                  className="text-muted hover:text-foreground disabled:opacity-30"
-                >
-                  <ArrowDown size={15} />
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setEditingId(project.id)}
-                  className="text-muted hover:text-accent"
-                >
-                  <Pencil size={15} />
-                </button>
-                <button
-                  type="button"
-                  onClick={() => handleDelete(project.id)}
-                  className="text-muted hover:text-red-400"
-                >
-                  <Trash2 size={15} />
-                </button>
-              </div>
-            </div>
-          ))}
-          {projects.length === 0 && (
-            <p className="py-8 font-mono text-xs text-muted">
-              Belum ada project.
-            </p>
-          )}
-        </div>
+      {error && (
+        <p className="mt-4 font-mono text-xs text-red-400">{error}</p>
       )}
+
+      <div className="mt-8 border-b border-border">
+        {projects.map((project, i) => (
+          <div
+            key={project.title + i}
+            className="flex items-center justify-between gap-4 border-t border-border py-4"
+          >
+            <span className="font-display text-lg text-foreground">
+              {project.title}
+            </span>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => move(i, -1)}
+                disabled={i === 0}
+                className="text-muted hover:text-foreground disabled:opacity-30"
+              >
+                <ArrowUp size={15} />
+              </button>
+              <button
+                type="button"
+                onClick={() => move(i, 1)}
+                disabled={i === projects.length - 1}
+                className="text-muted hover:text-foreground disabled:opacity-30"
+              >
+                <ArrowDown size={15} />
+              </button>
+              <button
+                type="button"
+                onClick={() => setEditingIndex(i)}
+                className="text-muted hover:text-accent"
+              >
+                <Pencil size={15} />
+              </button>
+              <button
+                type="button"
+                onClick={() => handleDelete(i)}
+                className="text-muted hover:text-red-400"
+              >
+                <Trash2 size={15} />
+              </button>
+            </div>
+          </div>
+        ))}
+        {projects.length === 0 && (
+          <p className="py-8 font-mono text-xs text-muted">
+            Belum ada project.
+          </p>
+        )}
+      </div>
     </div>
   );
 }

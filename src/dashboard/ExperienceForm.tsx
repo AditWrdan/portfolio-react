@@ -3,10 +3,16 @@ import type { ExperienceEntry } from "../lib/types";
 import ImageUploadField from "./components/ImageUploadField";
 import TagListInput from "./components/TagListInput";
 
-export type ExperienceDraft = Omit<
-  ExperienceEntry,
-  "id" | "sort_order" | "highlights"
-> & { highlights: string[] };
+const EMPTY: ExperienceEntry = {
+  logo: "",
+  logoImage: null,
+  period: "",
+  role: "",
+  company: "",
+  description: "",
+  highlights: [],
+  tag: "",
+};
 
 export default function ExperienceForm({
   initial,
@@ -15,33 +21,11 @@ export default function ExperienceForm({
   saving,
 }: {
   initial?: ExperienceEntry;
-  onSave: (draft: ExperienceDraft) => void;
+  onSave: (draft: ExperienceEntry) => void;
   onCancel: () => void;
   saving: boolean;
 }) {
-  const [draft, setDraft] = useState<ExperienceDraft>(
-    initial
-      ? {
-          logo: initial.logo,
-          logo_image_url: initial.logo_image_url,
-          period: initial.period,
-          role: initial.role,
-          company: initial.company,
-          description: initial.description,
-          highlights: initial.highlights ?? [],
-          tag: initial.tag,
-        }
-      : {
-          logo: "",
-          logo_image_url: null,
-          period: "",
-          role: "",
-          company: "",
-          description: "",
-          highlights: [],
-          tag: "",
-        }
-  );
+  const [draft, setDraft] = useState<ExperienceEntry>(initial ?? EMPTY);
 
   return (
     <form
@@ -66,9 +50,8 @@ export default function ExperienceForm({
 
       <ImageUploadField
         label="Logo (opsional)"
-        folder="experience"
-        value={draft.logo_image_url}
-        onChange={(url) => setDraft({ ...draft, logo_image_url: url })}
+        value={draft.logoImage}
+        onChange={(url) => setDraft({ ...draft, logoImage: url })}
       />
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">

@@ -6,7 +6,9 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Portfolio />} />
-      <Route path="/dashboard/*" element={<DashboardPage />} />
+      {import.meta.env.DEV && (
+        <Route path="/dashboard/*" element={<DashboardPage />} />
+      )}
     </Routes>
   );
 }

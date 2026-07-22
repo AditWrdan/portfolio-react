@@ -3,22 +3,14 @@ import type { Project } from "../lib/types";
 import ImageUploadField from "./components/ImageUploadField";
 import TagListInput from "./components/TagListInput";
 
-export type ProjectDraft = Omit<
-  Project,
-  "id" | "sort_order" | "highlights" | "stack"
-> & {
-  highlights: string[];
-  stack: string[];
-};
-
-const EMPTY: ProjectDraft = {
+const EMPTY: Project = {
   title: "",
-  image_url: null,
+  image: null,
   description: "",
   highlights: [],
   note: null,
   stack: [],
-  link_label: null,
+  linkLabel: null,
   href: null,
 };
 
@@ -29,24 +21,11 @@ export default function ProjectForm({
   saving,
 }: {
   initial?: Project;
-  onSave: (draft: ProjectDraft) => void;
+  onSave: (draft: Project) => void;
   onCancel: () => void;
   saving: boolean;
 }) {
-  const [draft, setDraft] = useState<ProjectDraft>(
-    initial
-      ? {
-          title: initial.title,
-          image_url: initial.image_url,
-          description: initial.description,
-          highlights: initial.highlights ?? [],
-          note: initial.note,
-          stack: initial.stack,
-          link_label: initial.link_label,
-          href: initial.href,
-        }
-      : EMPTY
-  );
+  const [draft, setDraft] = useState<Project>(initial ?? EMPTY);
 
   return (
     <form
@@ -70,9 +49,8 @@ export default function ProjectForm({
 
       <ImageUploadField
         label="Screenshot"
-        folder="projects"
-        value={draft.image_url}
-        onChange={(url) => setDraft({ ...draft, image_url: url })}
+        value={draft.image}
+        onChange={(url) => setDraft({ ...draft, image: url })}
       />
 
       <div>
@@ -126,9 +104,9 @@ export default function ProjectForm({
             Link label
           </label>
           <input
-            value={draft.link_label ?? ""}
+            value={draft.linkLabel ?? ""}
             onChange={(e) =>
-              setDraft({ ...draft, link_label: e.target.value || null })
+              setDraft({ ...draft, linkLabel: e.target.value || null })
             }
             placeholder="github.com/user/repo"
             className="mt-2 w-full border border-border bg-bg px-3 py-2 text-sm text-foreground outline-none focus:border-accent"

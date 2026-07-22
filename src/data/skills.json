@@ -1,0 +1,14 @@
+[
+  {
+    "category": "Frontend",
+    "stack": ["React", "Next.js", "HTML", "Tailwind CSS"]
+  },
+  {
+    "category": "Backend",
+    "stack": ["Node.js", "PostgreSQL", "Prosedur SQL", "MongoDB"]
+  },
+  {
+    "category": "Tools",
+    "stack": ["Git", "Figma", "DBeaver", "Xampp"]
+  }
+]

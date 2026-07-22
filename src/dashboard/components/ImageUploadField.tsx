@@ -1,17 +1,23 @@
 import { useState } from "react";
 import { Upload } from "lucide-react";
-import { supabase, STORAGE_BUCKET } from "../../lib/supabase";
 
 const MAX_SIZE_BYTES = 5 * 1024 * 1024;
 
+function readAsDataUrl(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result as string);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
 export default function ImageUploadField({
   label,
-  folder,
   value,
   onChange,
 }: {
   label: string;
-  folder: string;
   value: string | null;
   onChange: (url: string) => void;
 }) {
@@ -34,22 +40,24 @@ export default function ImageUploadField({
     setPreview(URL.createObjectURL(file));
     setUploading(true);
 
-    const safeName = file.name.replace(/[^a-zA-Z0-9.-]/g, "_");
-    const path = `${folder}/${crypto.randomUUID()}-${safeName}`;
-
-    const { error: uploadError } = await supabase.storage
-      .from(STORAGE_BUCKET)
-      .upload(path, file);
-
-    setUploading(false);
-
-    if (uploadError) {
-      setError("Upload gagal: " + uploadError.message);
-      return;
+    try {
+      const dataUrl = await readAsDataUrl(file);
+      const res = await fetch("/api/upload", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ fileName: file.name, dataUrl }),
+      });
+      if (!res.ok) throw new Error(await res.text());
+      const { url } = (await res.json()) as { url: string };
+      onChange(url);
+    } catch (err) {
+      setError(
+        "Upload gagal — pastikan dev server (npm run dev) sedang jalan. " +
+          String(err)
+      );
+    } finally {
+      setUploading(false);
     }
-
-    const { data } = supabase.storage.from(STORAGE_BUCKET).getPublicUrl(path);
-    onChange(data.publicUrl);
   };
 
   return (
@@ -61,11 +69,7 @@ export default function ImageUploadField({
       <div className="mt-2 flex items-center gap-4">
         <div className="flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden border border-border bg-surface">
           {preview ? (
-            <img
-              src={preview}
-              alt=""
-              className="h-full w-full object-cover"
-            />
+            <img src={preview} alt="" className="h-full w-full object-cover" />
           ) : (
             <Upload size={18} className="text-muted" />
           )}
@@ -86,9 +90,7 @@ export default function ImageUploadField({
         </label>
       </div>
 
-      {error && (
-        <p className="mt-2 font-mono text-xs text-red-400">{error}</p>
-      )}
+      {error && <p className="mt-2 font-mono text-xs text-red-400">{error}</p>}
     </div>
   );
 }

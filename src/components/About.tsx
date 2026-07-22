@@ -2,19 +2,14 @@ import { useRef, useState } from "react";
 import { motion } from "motion/react";
 import SectionEyebrow from "./SectionEyebrow";
 import ParallaxWatermark from "./ParallaxWatermark";
-import Skeleton from "./Skeleton";
 import { EASE_HEAVY } from "../lib/motion";
-import { useAbout } from "../hooks/useAbout";
-import { useSkills } from "../hooks/useSkills";
 import { renderBio } from "../lib/renderBio";
+import aboutData from "../data/about.json";
+import skillsData from "../data/skills.json";
 
 export default function About() {
   const [photoFailed, setPhotoFailed] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
-  const { data: about, loading: aboutLoading } = useAbout();
-  const { data: skills, loading: skillsLoading } = useSkills();
-
-  const photoUrl = about?.photo_url;
 
   return (
     <section
@@ -39,9 +34,9 @@ export default function About() {
               IMG_01
             </span>
 
-            {photoUrl && !photoFailed ? (
+            {aboutData.photoUrl && !photoFailed ? (
               <img
-                src={photoUrl}
+                src={aboutData.photoUrl}
                 alt="Profile"
                 onError={() => setPhotoFailed(true)}
                 className="h-full w-full object-cover"
@@ -66,46 +61,31 @@ export default function About() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.9, ease: EASE_HEAVY, delay: 0.12 }}
           >
-            {aboutLoading ? (
-              <div className="max-w-2xl space-y-3">
-                <Skeleton className="h-6 w-full" />
-                <Skeleton className="h-6 w-full" />
-                <Skeleton className="h-6 w-2/3" />
-              </div>
-            ) : (
-              <p className="max-w-2xl font-display text-lg font-medium leading-relaxed text-muted md:text-xl">
-                {about ? renderBio(about.bio) : null}
-              </p>
-            )}
+            <p className="max-w-2xl font-display text-lg font-medium leading-relaxed text-muted md:text-xl">
+              {renderBio(aboutData.bio)}
+            </p>
 
             <div className="mt-10 max-w-2xl border-t border-border">
-              {skillsLoading
-                ? Array.from({ length: 3 }).map((_, i) => (
-                    <div key={i} className="border-b border-border py-6">
-                      <Skeleton className="h-3 w-20" />
-                      <Skeleton className="mt-3 h-5 w-full" />
-                    </div>
-                  ))
-                : skills.map((group) => (
-                    <div
-                      key={group.id}
-                      className="border-b border-border py-6"
-                    >
-                      <p className="font-mono text-xs uppercase tracking-widest text-muted">
-                        {group.category}
-                      </p>
-                      <p className="mt-3 text-lg text-foreground">
-                        {group.stack.map((item, i) => (
-                          <span key={item}>
-                            <span className="font-medium">{item}</span>
-                            {i < group.stack.length - 1 && (
-                              <span className="mx-2 text-muted">/</span>
-                            )}
-                          </span>
-                        ))}
-                      </p>
-                    </div>
-                  ))}
+              {skillsData.map((group) => (
+                <div
+                  key={group.category}
+                  className="border-b border-border py-6"
+                >
+                  <p className="font-mono text-xs uppercase tracking-widest text-muted">
+                    {group.category}
+                  </p>
+                  <p className="mt-3 text-lg text-foreground">
+                    {group.stack.map((item, i) => (
+                      <span key={item}>
+                        <span className="font-medium">{item}</span>
+                        {i < group.stack.length - 1 && (
+                          <span className="mx-2 text-muted">/</span>
+                        )}
+                      </span>
+                    ))}
+                  </p>
+                </div>
+              ))}
             </div>
           </motion.div>
         </div>

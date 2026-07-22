@@ -1,6 +1,4 @@
 import { NavLink, Outlet, Link } from "react-router-dom";
-import { LogOut } from "lucide-react";
-import { supabase } from "../lib/supabase";
 
 const TABS = [
   { to: "/dashboard/projects", label: "Work" },
@@ -44,14 +42,6 @@ export default function DashboardLayout() {
           >
             Lihat situs live
           </Link>
-          <button
-            type="button"
-            onClick={() => supabase.auth.signOut()}
-            className="flex items-center gap-1.5 font-mono text-xs uppercase tracking-widest text-muted hover:text-red-400"
-          >
-            <LogOut size={13} />
-            Logout
-          </button>
         </div>
       </header>
 

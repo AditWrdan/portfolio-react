@@ -1,0 +1,29 @@
+[
+  {
+    "logo": "ILC",
+    "logoImage": "/ILCS.jpg",
+    "period": "Dec 2025 — Present",
+    "role": "Infra & Application Support",
+    "company": "Integrasi Logistik Cipta Solusi · Jakarta, Indonesia · On-site",
+    "description": "Provided application support for mission-critical port and logistics systems within Pelindo Group.",
+    "highlights": [
+      "Monitored application performance and system availability to ensure stable daily operations.",
+      "Investigated, analyzed, and resolved application and database issues with minimal operational impact.",
+      "Handled incident, problem, and service requests in accordance with SLA and operational priorities.",
+      "Performed data validation, analysis, and troubleshooting using Oracle SQL and PL/SQL.",
+      "Supported operational processes including billing, payment, gate-in/gate-out, and container movement.",
+      "Documented incidents, solutions, and operational procedures to improve system reliability."
+    ],
+    "tag": "Contract"
+  },
+  {
+    "logo": "YSH",
+    "logoImage": "/hsn.jpg",
+    "period": "Oct 2023 — Jan 2024",
+    "role": "Intern",
+    "company": "Yayasan Sultan Hasanudin",
+    "description": "Internship at Sultan Hasanudin Foundation, developing a library book lending application using Java (NetBeans) and MySQL. The application includes features for book management, member registration, borrowing and returning transactions, as well as generating reports. Responsible for database design, user interface development, program logic implementation, and system testing.",
+    "highlights": [],
+    "tag": "Internship"
+  }
+]

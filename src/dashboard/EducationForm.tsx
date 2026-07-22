@@ -2,7 +2,13 @@ import { useState } from "react";
 import type { EducationEntry } from "../lib/types";
 import ImageUploadField from "./components/ImageUploadField";
 
-export type EducationDraft = Omit<EducationEntry, "id" | "sort_order">;
+const EMPTY: EducationEntry = {
+  logo: "",
+  logoImage: null,
+  period: "",
+  school: "",
+  field: "",
+};
 
 export default function EducationForm({
   initial,
@@ -11,27 +17,11 @@ export default function EducationForm({
   saving,
 }: {
   initial?: EducationEntry;
-  onSave: (draft: EducationDraft) => void;
+  onSave: (draft: EducationEntry) => void;
   onCancel: () => void;
   saving: boolean;
 }) {
-  const [draft, setDraft] = useState<EducationDraft>(
-    initial
-      ? {
-          logo: initial.logo,
-          logo_image_url: initial.logo_image_url,
-          period: initial.period,
-          school: initial.school,
-          field: initial.field,
-        }
-      : {
-          logo: "",
-          logo_image_url: null,
-          period: "",
-          school: "",
-          field: "",
-        }
-  );
+  const [draft, setDraft] = useState<EducationEntry>(initial ?? EMPTY);
 
   return (
     <form
@@ -56,9 +46,8 @@ export default function EducationForm({
 
       <ImageUploadField
         label="Logo (opsional)"
-        folder="education"
-        value={draft.logo_image_url}
-        onChange={(url) => setDraft({ ...draft, logo_image_url: url })}
+        value={draft.logoImage}
+        onChange={(url) => setDraft({ ...draft, logoImage: url })}
       />
 
       <div>

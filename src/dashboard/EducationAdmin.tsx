@@ -1,77 +1,75 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ArrowDown, ArrowUp, Pencil, Plus, Trash2 } from "lucide-react";
-import { supabase } from "../lib/supabase";
 import type { EducationEntry } from "../lib/types";
-import EducationForm, { type EducationDraft } from "./EducationForm";
+import educationData from "../data/education.json";
+import EducationForm from "./EducationForm";
+
+async function persist(items: EducationEntry[]) {
+  const res = await fetch("/api/content/education", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(items),
+  });
+  if (!res.ok) {
+    throw new Error(
+      "Gagal menyimpan — pastikan dev server (npm run dev) sedang jalan."
+    );
+  }
+}
 
 export default function EducationAdmin() {
-  const [items, setItems] = useState<EducationEntry[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [editingId, setEditingId] = useState<string | "new" | null>(null);
+  const [items, setItems] = useState<EducationEntry[]>(
+    educationData as EducationEntry[]
+  );
+  const [editingIndex, setEditingIndex] = useState<number | "new" | null>(
+    null
+  );
   const [saving, setSaving] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const load = async () => {
-    setLoading(true);
-    const { data } = await supabase
-      .from("education")
-      .select("*")
-      .order("sort_order", { ascending: true });
-    setItems(data ?? []);
-    setLoading(false);
-  };
-
-  useEffect(() => {
-    load();
-  }, []);
-
-  const handleSave = async (draft: EducationDraft) => {
+  const save = async (next: EducationEntry[]) => {
     setSaving(true);
-    if (editingId === "new") {
-      const nextSortOrder = items.length
-        ? Math.max(...items.map((e) => e.sort_order)) + 1
-        : 0;
-      await supabase
-        .from("education")
-        .insert({ ...draft, sort_order: nextSortOrder });
-    } else {
-      await supabase.from("education").update(draft).eq("id", editingId);
+    setError(null);
+    try {
+      await persist(next);
+      setItems(next);
+    } catch (err) {
+      setError(String(err));
+    } finally {
+      setSaving(false);
     }
-    setSaving(false);
-    setEditingId(null);
-    load();
   };
 
-  const handleDelete = async (id: string) => {
+  const handleSave = async (draft: EducationEntry) => {
+    const next =
+      editingIndex === "new"
+        ? [...items, draft]
+        : items.map((e, i) => (i === editingIndex ? draft : e));
+    await save(next);
+    setEditingIndex(null);
+  };
+
+  const handleDelete = async (index: number) => {
     if (!window.confirm("Hapus entri pendidikan ini?")) return;
-    await supabase.from("education").delete().eq("id", id);
-    load();
+    await save(items.filter((_, i) => i !== index));
   };
 
   const move = async (index: number, direction: -1 | 1) => {
     const target = index + direction;
     if (target < 0 || target >= items.length) return;
-    const a = items[index];
-    const b = items[target];
-    await supabase
-      .from("education")
-      .update({ sort_order: b.sort_order })
-      .eq("id", a.id);
-    await supabase
-      .from("education")
-      .update({ sort_order: a.sort_order })
-      .eq("id", b.id);
-    load();
+    const next = [...items];
+    [next[index], next[target]] = [next[target], next[index]];
+    await save(next);
   };
 
-  if (editingId) {
-    const current =
-      editingId === "new" ? undefined : items.find((e) => e.id === editingId);
+  if (editingIndex !== null) {
+    const current = editingIndex === "new" ? undefined : items[editingIndex];
     return (
       <EducationForm
         initial={current}
         saving={saving}
         onSave={handleSave}
-        onCancel={() => setEditingId(null)}
+        onCancel={() => setEditingIndex(null)}
       />
     );
   }
@@ -84,7 +82,7 @@ export default function EducationAdmin() {
         </h2>
         <button
           type="button"
-          onClick={() => setEditingId("new")}
+          onClick={() => setEditingIndex("new")}
           className="flex items-center gap-1.5 border border-accent/60 px-4 py-2 font-mono text-xs uppercase tracking-widest text-accent hover:bg-accent hover:text-bg"
         >
           <Plus size={14} />
@@ -92,62 +90,62 @@ export default function EducationAdmin() {
         </button>
       </div>
 
-      {loading ? (
-        <p className="mt-8 font-mono text-xs text-muted">Memuat...</p>
-      ) : (
-        <div className="mt-8 border-b border-border">
-          {items.map((entry, i) => (
-            <div
-              key={entry.id}
-              className="flex items-center justify-between gap-4 border-t border-border py-4"
-            >
-              <div>
-                <p className="text-sm text-foreground">{entry.school}</p>
-                <p className="mt-1 font-mono text-xs text-muted">
-                  {entry.period} · {entry.field}
-                </p>
-              </div>
-              <div className="flex shrink-0 items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => move(i, -1)}
-                  disabled={i === 0}
-                  className="text-muted hover:text-foreground disabled:opacity-30"
-                >
-                  <ArrowUp size={15} />
-                </button>
-                <button
-                  type="button"
-                  onClick={() => move(i, 1)}
-                  disabled={i === items.length - 1}
-                  className="text-muted hover:text-foreground disabled:opacity-30"
-                >
-                  <ArrowDown size={15} />
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setEditingId(entry.id)}
-                  className="text-muted hover:text-accent"
-                >
-                  <Pencil size={15} />
-                </button>
-                <button
-                  type="button"
-                  onClick={() => handleDelete(entry.id)}
-                  className="text-muted hover:text-red-400"
-                >
-                  <Trash2 size={15} />
-                </button>
-              </div>
-            </div>
-          ))}
-          {items.length === 0 && (
-            <p className="py-8 font-mono text-xs text-muted">
-              Belum ada data pendidikan.
-            </p>
-          )}
-        </div>
+      {error && (
+        <p className="mt-4 font-mono text-xs text-red-400">{error}</p>
       )}
+
+      <div className="mt-8 border-b border-border">
+        {items.map((entry, i) => (
+          <div
+            key={entry.school + i}
+            className="flex items-center justify-between gap-4 border-t border-border py-4"
+          >
+            <div>
+              <p className="text-sm text-foreground">{entry.school}</p>
+              <p className="mt-1 font-mono text-xs text-muted">
+                {entry.period} · {entry.field}
+              </p>
+            </div>
+            <div className="flex shrink-0 items-center gap-2">
+              <button
+                type="button"
+                onClick={() => move(i, -1)}
+                disabled={i === 0}
+                className="text-muted hover:text-foreground disabled:opacity-30"
+              >
+                <ArrowUp size={15} />
+              </button>
+              <button
+                type="button"
+                onClick={() => move(i, 1)}
+                disabled={i === items.length - 1}
+                className="text-muted hover:text-foreground disabled:opacity-30"
+              >
+                <ArrowDown size={15} />
+              </button>
+              <button
+                type="button"
+                onClick={() => setEditingIndex(i)}
+                className="text-muted hover:text-accent"
+              >
+                <Pencil size={15} />
+              </button>
+              <button
+                type="button"
+                onClick={() => handleDelete(i)}
+                className="text-muted hover:text-red-400"
+              >
+                <Trash2 size={15} />
+              </button>
+            </div>
+          </div>
+        ))}
+        {items.length === 0 && (
+          <p className="py-8 font-mono text-xs text-muted">
+            Belum ada data pendidikan.
+          </p>
+        )}
+      </div>
     </div>
   );
 }

@@ -11,7 +11,7 @@ const SKILLS = [
   },
   {
     category: "Backend",
-    stack: ["Node.js", "PostgreSQL", "PL/SQL", "MongoDB"],
+    stack: ["Node.js", "PostgreSQL", "Prosedur SQL", "MongoDB"],
   },
   { category: "Tools", stack: ["Git", "Figma", "DBeaver", "Xampp"] },
 ];

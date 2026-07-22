@@ -29,6 +29,9 @@ export default function ParallaxWatermark({
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+      return;
+    }
 
     const handleMove = (event: MouseEvent) => {
       const rect = el.getBoundingClientRect();
@@ -59,7 +62,7 @@ export default function ParallaxWatermark({
     <motion.span
       aria-hidden
       style={{ y: combinedY, x: mouseX }}
-      className="pointer-events-none absolute -right-6 top-1/2 -translate-y-1/2 select-none font-display text-[20vw] font-semibold leading-none text-white/3 sm:text-[16vw]"
+      className="pointer-events-none absolute -right-6 top-1/2 -translate-y-1/2 select-none font-display text-[clamp(4rem,20vw,14rem)] font-semibold leading-none text-white/3"
     >
       {text}
     </motion.span>

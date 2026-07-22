@@ -39,7 +39,7 @@ export default function Hero() {
       <motion.span
         aria-hidden
         style={{ y: watermarkY }}
-        className="pointer-events-none absolute -right-10 top-1/2 -translate-y-1/2 select-none font-display text-[26vw] font-semibold leading-none text-white/3 sm:text-[22vw]"
+        className="pointer-events-none absolute -right-10 top-1/2 -translate-y-1/2 select-none font-display text-[clamp(6rem,26vw,18rem)] font-semibold leading-none text-white/3"
       >
         AW
       </motion.span>

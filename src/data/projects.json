@@ -25,6 +25,19 @@
     "href": null
   },
   {
+    "title": "Looma Aksi",
+    "image": "/aksi.png",
+    "description": "The service information and promotional features on the website are presented through a clean and user-friendly interface. A structured navigation layout allows visitors to easily explore essential sections such as service introductions, pricing details, contact information, customer benefits, and promotional highlights. Each section is designed with clear labeling and intuitive flow, ensuring that users can quickly understand the available services and get in touch without hassle. The website provides an organized and visually appealing experience to support effective communication and service promotion.\n\nDeveloped an informational and promotional website using React.js and Tailwind CSS, featuring a responsive, fast, and user-friendly interface. The website is designed to clearly present service details, contact information, pricing, and promotional highlights through clean navigation and well-structured content sections. Its optimized layout ensures a smooth and engaging browsing experience across various devices.",
+    "highlights": [],
+    "note": null,
+    "stack": [
+      "React",
+      "Tailwind CSS"
+    ],
+    "linkLabel": "loomaaksi.netlify.app",
+    "href": "https://loomaaksi.netlify.app/"
+  },
+  {
     "title": "SPK for Prospective Employees",
     "image": "/spk1.png",
     "description": "The decision support process for employee selection at PT. Inovasi Tangguh Perkasa is presented through a user-friendly interface. On the left side, a vertical navigation panel is equipped with clear icons and labels to access various features such as the dashboard, employee candidate data, assessment team data, admin registration, criteria evaluation, final calculation, and decision letter generation. The main screen displays concise information in the form of informative cards showing the number of candidates, assessors, and nominations. The design adopts a professional blue color scheme with modern and clean visual elements, emphasizing that the system utilizes the Analytical Hierarchy Process (AHP) method as the foundation for decision-making.\n\nCreated a desktop application using Java NetBeans integrated with a SQL database, designed to manage various data operations efficiently. The application includes essential features such as user login, data entry, update and deletion, as well as report generation using iReport.",
@@ -39,19 +52,6 @@
     ],
     "linkLabel": "github.com/AditWrdan/SPK-Calon-Karyawan",
     "href": "https://github.com/AditWrdan/SPK-Calon-Karyawan"
-  },
-  {
-    "title": "Looma Aksi",
-    "image": "/aksi.png",
-    "description": "The service information and promotional features on the website are presented through a clean and user-friendly interface. A structured navigation layout allows visitors to easily explore essential sections such as service introductions, pricing details, contact information, customer benefits, and promotional highlights. Each section is designed with clear labeling and intuitive flow, ensuring that users can quickly understand the available services and get in touch without hassle. The website provides an organized and visually appealing experience to support effective communication and service promotion.\n\nDeveloped an informational and promotional website using React.js and Tailwind CSS, featuring a responsive, fast, and user-friendly interface. The website is designed to clearly present service details, contact information, pricing, and promotional highlights through clean navigation and well-structured content sections. Its optimized layout ensures a smooth and engaging browsing experience across various devices.",
-    "highlights": [],
-    "note": null,
-    "stack": [
-      "React",
-      "Tailwind CSS"
-    ],
-    "linkLabel": "loomaaksi.netlify.app",
-    "href": "https://loomaaksi.netlify.app/"
   },
   {
     "title": "Broody Adventure",

@@ -82,6 +82,20 @@
     "href": "https://github.com/AditWrdan/SPK-Calon-Karyawan"
   },
   {
+    "title": "Competition Battle Campus",
+    "image": "/combac.png",
+    "description": "A website designed to facilitate the competition registration process, equipped with registration and login features for participants. Additionally, it includes an admin panel that enables comprehensive data management, including adding, editing, and deleting participant data and competition information.\n\nCreated a website using HTML and PHP which is connected using a SQL database with several features such as login features, registration features, and raw features.",
+    "highlights": [],
+    "note": null,
+    "stack": [
+      "HTML",
+      "PHP",
+      "SQL"
+    ],
+    "linkLabel": "github.com/AditWrdan/COMBAC",
+    "href": "https://github.com/AditWrdan/COMBAC"
+  },
+  {
     "title": "School Library",
     "image": "/perpus.png",
     "description": "This application is designed to assist with efficient data management and book lending processes within a school environment. On the left navigation panel, there are menu buttons with intuitive icons such as Dashboard, Book Data, Teacher Data, Student Data, Supplier Data, Lending, and Report Printing. At the bottom of the panel, there is an Admin account label along with a clearly visible red Logout button.\n\nCreated a desktop application using Java NetBeans integrated with a SQL database, designed to manage various data operations efficiently. The application includes essential features such as user login, data entry, update and deletion, as well as report generation using iReport.",
@@ -95,19 +109,5 @@
     ],
     "linkLabel": "github.com/AditWrdan/School-Library",
     "href": "https://github.com/AditWrdan/School-Library"
-  },
-  {
-    "title": "Competition Battle Campus",
-    "image": "/combac.png",
-    "description": "A website designed to facilitate the competition registration process, equipped with registration and login features for participants. Additionally, it includes an admin panel that enables comprehensive data management, including adding, editing, and deleting participant data and competition information.\n\nCreated a website using HTML and PHP which is connected using a SQL database with several features such as login features, registration features, and raw features.",
-    "highlights": [],
-    "note": null,
-    "stack": [
-      "HTML",
-      "PHP",
-      "SQL"
-    ],
-    "linkLabel": "github.com/AditWrdan/COMBAC",
-    "href": "https://github.com/AditWrdan/COMBAC"
   }
 ]

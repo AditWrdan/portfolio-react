@@ -73,19 +73,6 @@
     "href": "https://loomaaksi.netlify.app/"
   },
   {
-    "title": "Jasa Suruh Depok",
-    "image": "/jasasuruh.png",
-    "description": "A website designed to provide information and promote household helper services in the Depok area. It allows users to easily explore the available services, contact information, and the benefits offered. With a simple and informative layout, the website helps users quickly find the services they need.\n\nDeveloped a modern website using React.js and Tailwind CSS, featuring a responsive, fast, and user-friendly interface. The website is designed to present information interactively, with clean navigation, well-structured content management, and an optimized layout for various devices.",
-    "highlights": [],
-    "note": null,
-    "stack": [
-      "React",
-      "Tailwind CSS"
-    ],
-    "linkLabel": "jasasuruhdepok.netlify.app",
-    "href": "https://jasasuruhdepok.netlify.app/"
-  },
-  {
     "title": "FlowSend — WhatsApp Campaign Manager",
     "image": "/flowsend.png",
     "description": "A Chrome extension for managing WhatsApp broadcast campaigns responsibly and safely, built as a complete full-stack app with its own dashboard, backend API, and database.",
@@ -109,5 +96,18 @@
     ],
     "linkLabel": null,
     "href": null
+  },
+  {
+    "title": "Jasa Suruh Depok",
+    "image": "/jasasuruh.png",
+    "description": "A website designed to provide information and promote household helper services in the Depok area. It allows users to easily explore the available services, contact information, and the benefits offered. With a simple and informative layout, the website helps users quickly find the services they need.\n\nDeveloped a modern website using React.js and Tailwind CSS, featuring a responsive, fast, and user-friendly interface. The website is designed to present information interactively, with clean navigation, well-structured content management, and an optimized layout for various devices.",
+    "highlights": [],
+    "note": null,
+    "stack": [
+      "React",
+      "Tailwind CSS"
+    ],
+    "linkLabel": "jasasuruhdepok.netlify.app",
+    "href": "https://jasasuruhdepok.netlify.app/"
   }
 ]

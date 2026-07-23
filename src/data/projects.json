@@ -46,20 +46,6 @@
     "href": "https://github.com/AditWrdan/School-Library"
   },
   {
-    "title": "Competition Battle Campus",
-    "image": "/combac.png",
-    "description": "A website designed to facilitate the competition registration process, equipped with registration and login features for participants. Additionally, it includes an admin panel that enables comprehensive data management, including adding, editing, and deleting participant data and competition information.\n\nCreated a website using HTML and PHP which is connected using a SQL database with several features such as login features, registration features, and raw features.",
-    "highlights": [],
-    "note": null,
-    "stack": [
-      "HTML",
-      "PHP",
-      "SQL"
-    ],
-    "linkLabel": "github.com/AditWrdan/COMBAC",
-    "href": "https://github.com/AditWrdan/COMBAC"
-  },
-  {
     "title": "FlowSend — WhatsApp Campaign Manager",
     "image": "/flowsend.png",
     "description": "A Chrome extension for managing WhatsApp broadcast campaigns responsibly and safely, built as a complete full-stack app with its own dashboard, backend API, and database.",
@@ -83,6 +69,20 @@
     ],
     "linkLabel": null,
     "href": null
+  },
+  {
+    "title": "Competition Battle Campus",
+    "image": "/combac.png",
+    "description": "A website designed to facilitate the competition registration process, equipped with registration and login features for participants. Additionally, it includes an admin panel that enables comprehensive data management, including adding, editing, and deleting participant data and competition information.\n\nCreated a website using HTML and PHP which is connected using a SQL database with several features such as login features, registration features, and raw features.",
+    "highlights": [],
+    "note": null,
+    "stack": [
+      "HTML",
+      "PHP",
+      "SQL"
+    ],
+    "linkLabel": "github.com/AditWrdan/COMBAC",
+    "href": "https://github.com/AditWrdan/COMBAC"
   },
   {
     "title": "Looma Aksi",

@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import SectionEyebrow from "./SectionEyebrow";
 import ParallaxWatermark from "./ParallaxWatermark";
@@ -9,6 +9,23 @@ export default function Work() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [imageErrors, setImageErrors] = useState<Record<number, boolean>>({});
   const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const links = projectsData
+      .filter((project) => project.image)
+      .map((project) => {
+        const link = document.createElement("link");
+        link.rel = "preload";
+        link.as = "image";
+        link.href = project.image as string;
+        document.head.appendChild(link);
+        return link;
+      });
+
+    return () => {
+      links.forEach((link) => document.head.removeChild(link));
+    };
+  }, []);
 
   return (
     <section

@@ -16,21 +16,6 @@
     "href": "https://github.com/AditWrdan/SPK-Calon-Karyawan"
   },
   {
-    "title": "Broody Adventure",
-    "image": "/broody.png",
-    "description": "Broody Adventure is a management information system application for outdoor equipment rentals located in Sentul City. The user interface design combines nature-themed visual elements with a simple and functional layout. On the left side, there is a gray navigation panel featuring menu buttons such as Dashboard, Item Data, Employee Data, Customer Data, Supplier Data, Rentals, and Report Printing.\n\nCreated a desktop application using Java NetBeans integrated with a SQL database, designed to manage various data operations efficiently. The application includes essential features such as user login, data entry, update and deletion, as well as report generation using iReport.",
-    "highlights": [],
-    "note": null,
-    "stack": [
-      "Java",
-      "NetBeans",
-      "SQL",
-      "iReport"
-    ],
-    "linkLabel": "github.com/AditWrdan/Broody-Adventure",
-    "href": "https://github.com/AditWrdan/Broody-Adventure"
-  },
-  {
     "title": "FlowSend — WhatsApp Campaign Manager",
     "image": "/flowsend.png",
     "description": "A Chrome extension for managing WhatsApp broadcast campaigns responsibly and safely, built as a complete full-stack app with its own dashboard, backend API, and database.",
@@ -54,6 +39,21 @@
     ],
     "linkLabel": null,
     "href": null
+  },
+  {
+    "title": "Broody Adventure",
+    "image": "/broody.png",
+    "description": "Broody Adventure is a management information system application for outdoor equipment rentals located in Sentul City. The user interface design combines nature-themed visual elements with a simple and functional layout. On the left side, there is a gray navigation panel featuring menu buttons such as Dashboard, Item Data, Employee Data, Customer Data, Supplier Data, Rentals, and Report Printing.\n\nCreated a desktop application using Java NetBeans integrated with a SQL database, designed to manage various data operations efficiently. The application includes essential features such as user login, data entry, update and deletion, as well as report generation using iReport.",
+    "highlights": [],
+    "note": null,
+    "stack": [
+      "Java",
+      "NetBeans",
+      "SQL",
+      "iReport"
+    ],
+    "linkLabel": "github.com/AditWrdan/Broody-Adventure",
+    "href": "https://github.com/AditWrdan/Broody-Adventure"
   },
   {
     "title": "School Library",

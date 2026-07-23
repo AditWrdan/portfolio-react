@@ -71,6 +71,19 @@
     "href": "https://github.com/AditWrdan/School-Library"
   },
   {
+    "title": "Jasa Suruh Depok",
+    "image": "/jasasuruh.png",
+    "description": "A website designed to provide information and promote household helper services in the Depok area. It allows users to easily explore the available services, contact information, and the benefits offered. With a simple and informative layout, the website helps users quickly find the services they need.\n\nDeveloped a modern website using React.js and Tailwind CSS, featuring a responsive, fast, and user-friendly interface. The website is designed to present information interactively, with clean navigation, well-structured content management, and an optimized layout for various devices.",
+    "highlights": [],
+    "note": null,
+    "stack": [
+      "React",
+      "Tailwind CSS"
+    ],
+    "linkLabel": "jasasuruhdepok.netlify.app",
+    "href": "https://jasasuruhdepok.netlify.app/"
+  },
+  {
     "title": "Competition Battle Campus",
     "image": "/combac.png",
     "description": "A website designed to facilitate the competition registration process, equipped with registration and login features for participants. Additionally, it includes an admin panel that enables comprehensive data management, including adding, editing, and deleting participant data and competition information.\n\nCreated a website using HTML and PHP which is connected using a SQL database with several features such as login features, registration features, and raw features.",
@@ -83,19 +96,6 @@
     ],
     "linkLabel": "github.com/AditWrdan/COMBAC",
     "href": "https://github.com/AditWrdan/COMBAC"
-  },
-  {
-    "title": "Jasa Suruh Depok",
-    "image": "/jasasuruh.png",
-    "description": "A website designed to provide information and promote household helper services in the Depok area. It allows users to easily explore the available services, contact information, and the benefits offered. With a simple and informative layout, the website helps users quickly find the services they need.\n\nDeveloped a modern website using React.js and Tailwind CSS, featuring a responsive, fast, and user-friendly interface. The website is designed to present information interactively, with clean navigation, well-structured content management, and an optimized layout for various devices.",
-    "highlights": [],
-    "note": null,
-    "stack": [
-      "React",
-      "Tailwind CSS"
-    ],
-    "linkLabel": "jasasuruhdepok.netlify.app",
-    "href": "https://jasasuruhdepok.netlify.app/"
   },
   {
     "title": "Looma Aksi",

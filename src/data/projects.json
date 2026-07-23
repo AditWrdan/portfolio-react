@@ -54,6 +54,19 @@
     "href": "https://github.com/AditWrdan/SPK-Calon-Karyawan"
   },
   {
+    "title": "Jasa Suruh Depok",
+    "image": "/jasasuruh.png",
+    "description": "A website designed to provide information and promote household helper services in the Depok area. It allows users to easily explore the available services, contact information, and the benefits offered. With a simple and informative layout, the website helps users quickly find the services they need.\n\nDeveloped a modern website using React.js and Tailwind CSS, featuring a responsive, fast, and user-friendly interface. The website is designed to present information interactively, with clean navigation, well-structured content management, and an optimized layout for various devices.",
+    "highlights": [],
+    "note": null,
+    "stack": [
+      "React",
+      "Tailwind CSS"
+    ],
+    "linkLabel": "jasasuruhdepok.netlify.app",
+    "href": "https://jasasuruhdepok.netlify.app/"
+  },
+  {
     "title": "Broody Adventure",
     "image": "/broody.png",
     "description": "Broody Adventure is a management information system application for outdoor equipment rentals located in Sentul City. The user interface design combines nature-themed visual elements with a simple and functional layout. On the left side, there is a gray navigation panel featuring menu buttons such as Dashboard, Item Data, Employee Data, Customer Data, Supplier Data, Rentals, and Report Printing.\n\nCreated a desktop application using Java NetBeans integrated with a SQL database, designed to manage various data operations efficiently. The application includes essential features such as user login, data entry, update and deletion, as well as report generation using iReport.",
@@ -67,19 +80,6 @@
     ],
     "linkLabel": "github.com/AditWrdan/Broody-Adventure",
     "href": "https://github.com/AditWrdan/Broody-Adventure"
-  },
-  {
-    "title": "Jasa Suruh Depok",
-    "image": "/jasasuruh.png",
-    "description": "A website designed to provide information and promote household helper services in the Depok area. It allows users to easily explore the available services, contact information, and the benefits offered. With a simple and informative layout, the website helps users quickly find the services they need.\n\nDeveloped a modern website using React.js and Tailwind CSS, featuring a responsive, fast, and user-friendly interface. The website is designed to present information interactively, with clean navigation, well-structured content management, and an optimized layout for various devices.",
-    "highlights": [],
-    "note": null,
-    "stack": [
-      "React",
-      "Tailwind CSS"
-    ],
-    "linkLabel": "jasasuruhdepok.netlify.app",
-    "href": "https://jasasuruhdepok.netlify.app/"
   },
   {
     "title": "School Library",

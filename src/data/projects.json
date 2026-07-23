@@ -38,6 +38,19 @@
     "href": "https://loomaaksi.netlify.app/"
   },
   {
+    "title": "Jasa Suruh Depok",
+    "image": "/jasasuruh.png",
+    "description": "A website designed to provide information and promote household helper services in the Depok area. It allows users to easily explore the available services, contact information, and the benefits offered. With a simple and informative layout, the website helps users quickly find the services they need.\n\nDeveloped a modern website using React.js and Tailwind CSS, featuring a responsive, fast, and user-friendly interface. The website is designed to present information interactively, with clean navigation, well-structured content management, and an optimized layout for various devices.",
+    "highlights": [],
+    "note": null,
+    "stack": [
+      "React",
+      "Tailwind CSS"
+    ],
+    "linkLabel": "jasasuruhdepok.netlify.app",
+    "href": "https://jasasuruhdepok.netlify.app/"
+  },
+  {
     "title": "SPK for Prospective Employees",
     "image": "/spk1.png",
     "description": "The decision support process for employee selection at PT. Inovasi Tangguh Perkasa is presented through a user-friendly interface. On the left side, a vertical navigation panel is equipped with clear icons and labels to access various features such as the dashboard, employee candidate data, assessment team data, admin registration, criteria evaluation, final calculation, and decision letter generation. The main screen displays concise information in the form of informative cards showing the number of candidates, assessors, and nominations. The design adopts a professional blue color scheme with modern and clean visual elements, emphasizing that the system utilizes the Analytical Hierarchy Process (AHP) method as the foundation for decision-making.\n\nCreated a desktop application using Java NetBeans integrated with a SQL database, designed to manage various data operations efficiently. The application includes essential features such as user login, data entry, update and deletion, as well as report generation using iReport.",
@@ -52,19 +65,6 @@
     ],
     "linkLabel": "github.com/AditWrdan/SPK-Calon-Karyawan",
     "href": "https://github.com/AditWrdan/SPK-Calon-Karyawan"
-  },
-  {
-    "title": "Jasa Suruh Depok",
-    "image": "/jasasuruh.png",
-    "description": "A website designed to provide information and promote household helper services in the Depok area. It allows users to easily explore the available services, contact information, and the benefits offered. With a simple and informative layout, the website helps users quickly find the services they need.\n\nDeveloped a modern website using React.js and Tailwind CSS, featuring a responsive, fast, and user-friendly interface. The website is designed to present information interactively, with clean navigation, well-structured content management, and an optimized layout for various devices.",
-    "highlights": [],
-    "note": null,
-    "stack": [
-      "React",
-      "Tailwind CSS"
-    ],
-    "linkLabel": "jasasuruhdepok.netlify.app",
-    "href": "https://jasasuruhdepok.netlify.app/"
   },
   {
     "title": "Broody Adventure",

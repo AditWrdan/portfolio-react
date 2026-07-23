@@ -1,20 +1,5 @@
 [
   {
-    "title": "Broody Adventure",
-    "image": "/broody.png",
-    "description": "Broody Adventure is a management information system application for outdoor equipment rentals located in Sentul City. The user interface design combines nature-themed visual elements with a simple and functional layout. On the left side, there is a gray navigation panel featuring menu buttons such as Dashboard, Item Data, Employee Data, Customer Data, Supplier Data, Rentals, and Report Printing.\n\nCreated a desktop application using Java NetBeans integrated with a SQL database, designed to manage various data operations efficiently. The application includes essential features such as user login, data entry, update and deletion, as well as report generation using iReport.",
-    "highlights": [],
-    "note": null,
-    "stack": [
-      "Java",
-      "NetBeans",
-      "SQL",
-      "iReport"
-    ],
-    "linkLabel": "github.com/AditWrdan/Broody-Adventure",
-    "href": "https://github.com/AditWrdan/Broody-Adventure"
-  },
-  {
     "title": "SPK for Prospective Employees",
     "image": "/spk1.png",
     "description": "The decision support process for employee selection at PT. Inovasi Tangguh Perkasa is presented through a user-friendly interface. On the left side, a vertical navigation panel is equipped with clear icons and labels to access various features such as the dashboard, employee candidate data, assessment team data, admin registration, criteria evaluation, final calculation, and decision letter generation. The main screen displays concise information in the form of informative cards showing the number of candidates, assessors, and nominations. The design adopts a professional blue color scheme with modern and clean visual elements, emphasizing that the system utilizes the Analytical Hierarchy Process (AHP) method as the foundation for decision-making.\n\nCreated a desktop application using Java NetBeans integrated with a SQL database, designed to manage various data operations efficiently. The application includes essential features such as user login, data entry, update and deletion, as well as report generation using iReport.",
@@ -29,6 +14,21 @@
     ],
     "linkLabel": "github.com/AditWrdan/SPK-Calon-Karyawan",
     "href": "https://github.com/AditWrdan/SPK-Calon-Karyawan"
+  },
+  {
+    "title": "Broody Adventure",
+    "image": "/broody.png",
+    "description": "Broody Adventure is a management information system application for outdoor equipment rentals located in Sentul City. The user interface design combines nature-themed visual elements with a simple and functional layout. On the left side, there is a gray navigation panel featuring menu buttons such as Dashboard, Item Data, Employee Data, Customer Data, Supplier Data, Rentals, and Report Printing.\n\nCreated a desktop application using Java NetBeans integrated with a SQL database, designed to manage various data operations efficiently. The application includes essential features such as user login, data entry, update and deletion, as well as report generation using iReport.",
+    "highlights": [],
+    "note": null,
+    "stack": [
+      "Java",
+      "NetBeans",
+      "SQL",
+      "iReport"
+    ],
+    "linkLabel": "github.com/AditWrdan/Broody-Adventure",
+    "href": "https://github.com/AditWrdan/Broody-Adventure"
   },
   {
     "title": "School Library",

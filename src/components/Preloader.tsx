@@ -27,15 +27,18 @@ export default function Preloader() {
           transition={{ duration: 0.7, ease: EASE_HEAVY }}
           className="fixed inset-0 z-100 flex items-center justify-center bg-bg"
         >
-          <motion.span
+          <motion.div
             initial={{ opacity: 0, scale: 0.92 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 1.04 }}
             transition={{ duration: 0.9, ease: EASE_HEAVY }}
-            className="font-mono text-sm tracking-[0.35em] text-muted"
+            className="flex flex-col items-center gap-5"
           >
-            AW / 2026
-          </motion.span>
+            <img src="/logonav.png" alt="" className="h-12 w-12 object-contain" />
+            <span className="font-mono text-sm tracking-[0.35em] text-muted">
+              AW / 2026
+            </span>
+          </motion.div>
         </motion.div>
       )}
     </AnimatePresence>
